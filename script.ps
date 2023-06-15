@@ -1,0 +1,18 @@
+$sourcePath = "C:\source"
+$destinationPath = "C:\destination"
+$filename = "filename.txt"
+
+# Set the robocopy options to only copy the file if it doesn't exist in the destination
+$robocopyOptions = "/z /np"
+
+# Loop indefinitely
+while ($true) {
+ # Check if the file exists in the destination path
+ if (!(Test-Path "$destinationPath\$filename")) {
+	 # Copy the file from the source to the destination using robocopy
+	 robocopy $sourcePath $destinationPath $filename /z /np
+ }
+
+ # Wait for 1 second before checking again
+ Start-Sleep -Seconds 2
+}
